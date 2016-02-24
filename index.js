@@ -4,11 +4,15 @@ var timeout = require('connect-timeout');
 var webpackTransform = require('./webpackTransform.js');
 
 var app = express()
+	.use(express.static('public'))
 	.use(timeout(60000));
 
 app.get('/webpack', function (req, res) {
 	var source = req.query.source;
-	var loaders = typeof req.query.loaders === 'string' ? [req.query.loaders] : req.query.loaders;
+	var loaders = [];
+	if (req.query.loaders) {
+		loaders = typeof req.query.loaders === 'string' ? [req.query.loaders] : req.query.loaders;
+	}
 
 	webpackTransform(source, loaders)
 		.then(function (output) {

@@ -1,0 +1,19 @@
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+}
+
+.source-panel {
+	width: 50%;
+	height: 100%;
+	display: inline-block;
+}
+
+.source-text {
+	width: 100%;
+	height: 100%;
+}
