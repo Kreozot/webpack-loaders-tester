@@ -17,7 +17,7 @@ $(function () {
 			var source = $(this).val();
 			$.get('/webpack', {
 				source: source,
-				loaders: ['raw']
+				loaders: ['raw', 'css?root=.']
 			}, function (data) {
 				$output.html(data);
 			});
