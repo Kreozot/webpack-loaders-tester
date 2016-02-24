@@ -23,6 +23,7 @@ function webpackTransform(source, loaders) {
 					if (error) {
 						reject(error);
 					} else if (jsonStats.errors.length > 0) {
+						fs.unlinkAsync('./out/' + entryFileName);
 						reject(jsonStats.errors);
 					} else {
 						resolve(stats);

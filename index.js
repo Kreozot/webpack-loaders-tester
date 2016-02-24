@@ -1,8 +1,3 @@
-var Promise = require('bluebird');
-
-var fs = Promise.promisifyAll(require('fs'));
-var randomstring = require('randomstring');
-
 var express = require('express');
 var timeout = require('connect-timeout');
 
