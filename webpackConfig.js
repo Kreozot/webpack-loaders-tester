@@ -1,17 +1,14 @@
-module.exports = {
-	entry: {
-		test: './entry.js'
-	},
-	output: {
-		path: './out/',
-		filename: '[name].js'
-	},
-	module: {
-		loaders: [
-			{
-				test: /test\.js/,
-				loader: 'json'
-			}
-		]
-	}
+module.exports = function (inputFileName, loadersConfig) {
+	return {
+		entry: {
+			entry: './' + inputFileName
+		},
+		output: {
+			path: './out/',
+			filename: inputFileName
+		},
+		module: {
+			loaders: loadersConfig
+		}
+	};
 };

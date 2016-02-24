@@ -10,6 +10,7 @@
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
+    "randomstring": "^1.1.4",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
