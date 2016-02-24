@@ -13,7 +13,7 @@ var app = express()
 
 app.get('/webpack', function (req, res) {
 	var source = req.query.source;
-	var loaders = req.query.loaders;
+	var loaders = typeof req.query.loaders === 'string' ? [req.query.loaders] : req.query.loaders;
 
 	webpackTransform(source, loaders)
 		.then(function (output) {
