@@ -1,8 +1,27 @@
 $(function () {
 	var editTimer;
+	$source = $('#source');
 	$output = $('#output');
+	$loaders = $('#loaders');
 
-	$('#source')
+	function updateOutput() {
+		var source = $source.val();
+		var loaders = $loaders.val();
+		$.get('/webpack', {
+			source: source,
+			loaders: loaders
+		}, function (data) {
+			if (data.error) {
+				$output.addClass('error-text')
+					.html(data.error);
+			} else {
+				$output.removeClass('error-text')
+					.html(data.output);
+			}
+		});
+	}
+
+	$('#source, #loaders')
 		.on('keyup', function () {
 			var $this = $(this);
 			if (editTimer) {
@@ -13,13 +32,5 @@ $(function () {
 				$this.trigger('lastchange');
 			}, 1000);
 		})
-		.bind('lastchange', function () {
-			var source = $(this).val();
-			$.get('/webpack', {
-				source: source,
-				loaders: ['raw', 'css?root=.']
-			}, function (data) {
-				$output.html(data);
-			});
-		});
+		.bind('lastchange', updateOutput);
 });

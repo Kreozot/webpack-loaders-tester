@@ -1,4 +1,4 @@
-module.exports = function (inputFileName, loadersConfig) {
+module.exports = function (inputFileName, loadersString) {
 	return {
 		entry: {
 			entry: './' + inputFileName
@@ -11,7 +11,7 @@ module.exports = function (inputFileName, loadersConfig) {
 			loaders: [
 				{
 					test: /_m\.js/,
-					loaders: loadersConfig
+					loader: loadersString
 				}
 			]
 		}

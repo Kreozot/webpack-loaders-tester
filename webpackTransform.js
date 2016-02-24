@@ -6,7 +6,7 @@ var randomstring = require('randomstring');
 var webpack = require('webpack');
 var getWebpackConfig = require('./webpackConfig.js');
 
-function webpackTransform(source, loaders) {
+function webpackTransform(source, loadersString) {
 	var rnd = randomstring.generate();
 	var entryFileName = rnd + '.js';
 	var moduleFileName = rnd + '_m.js';
@@ -18,7 +18,7 @@ function webpackTransform(source, loaders) {
 		])
 		.then(function () {
 			return new Promise(function (resolve, reject) {
-				webpack(getWebpackConfig(entryFileName, loaders), function (error, stats) {
+				webpack(getWebpackConfig(entryFileName, loadersString), function (error, stats) {
 					var jsonStats = stats.toJson();
 					if (error) {
 						reject(error);

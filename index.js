@@ -9,18 +9,15 @@ var app = express()
 
 app.get('/webpack', function (req, res) {
 	var source = req.query.source;
-	var loaders = [];
-	if (req.query.loaders) {
-		loaders = typeof req.query.loaders === 'string' ? [req.query.loaders] : req.query.loaders;
-	}
+	var loadersString = req.query.loaders || 'raw';
 
-	webpackTransform(source, loaders)
+	webpackTransform(source, loadersString)
 		.then(function (output) {
-			res.send(output.toString());
+			res.json({output: output.toString()});
 		})
 		.catch(function (error) {
 			console.error(error);
-			res.send(error);
+			res.json({error: error});
 		});
 });
 
