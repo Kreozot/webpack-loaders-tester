@@ -8,7 +8,12 @@ module.exports = function (inputFileName, loadersConfig) {
 			filename: inputFileName
 		},
 		module: {
-			loaders: loadersConfig
+			loaders: [
+				{
+					test: /_m\.js/,
+					loaders: loadersConfig
+				}
+			]
 		}
 	};
 };

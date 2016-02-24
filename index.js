@@ -13,8 +13,9 @@ var app = express()
 
 app.get('/webpack', function (req, res) {
 	var source = req.query.source;
+	var loaders = req.query.loaders;
 
-	webpackTransform(source)
+	webpackTransform(source, loaders)
 		.then(function (output) {
 			res.send(output.toString());
 		})
